@@ -15,7 +15,7 @@ export function isTheme(maybeTheme?: string): maybeTheme is Theme {
 }
 
 const ThemeContext = React.createContext<
-    readonly [Theme, (newTheme: Theme) => void] | null
+    readonly ['light' | 'dark', (newTheme: 'light' | 'dark') => void] | null
 >(null);
 
 export function useTheme() {
@@ -81,7 +81,8 @@ export const ThemeProvider = (props: {
 }) => {
     const { value } = props;
 
-    const [theme, setThemeState] = React.useState<Theme>(value);
+    const [_theme, setThemeState] = React.useState<Theme>(value);
+    const theme = _theme === 'system' ? 'dark' : _theme;
 
     const setTheme = (newTheme: Theme) => {
         setCookie(newTheme);
