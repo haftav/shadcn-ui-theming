@@ -40,14 +40,6 @@ export async function loader({ request }: LoaderArgs) {
 export default function App() {
     const { theme } = useLoaderData<typeof loader>();
 
-    const background = useColorStore((store) => store.light.background);
-    const foreground = useColorStore((store) => store.light.foreground);
-
-    const mutedLight = useColorStore((store) => store.light.muted);
-    const mutedForegroundLight = useColorStore(
-        (store) => store.light.mutedForeground
-    );
-
     return (
         <html
             lang="en"
@@ -61,6 +53,12 @@ export default function App() {
                 <style>
                     {`
 html {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
  

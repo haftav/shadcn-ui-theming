@@ -106,7 +106,7 @@ interface ColorStoreState {
     setColor: (
         theme: 'light' | 'dark',
         newColor: keyof ColorTheme,
-        value: string
+        value: Color
     ) => void;
 }
 
@@ -116,9 +116,9 @@ export const useColorStore = create<ColorStoreState>((set) => ({
     setColor: (
         theme: 'light' | 'dark',
         newColor: keyof ColorTheme,
-        value: string
+        value: Color
     ) =>
         set((state) => ({
-            [theme]: { ...state[theme], [newColor]: Color.fromString(value) },
+            [theme]: { ...state[theme], [newColor]: value },
         })),
 }));
